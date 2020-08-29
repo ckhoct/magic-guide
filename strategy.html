@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>魔術指南</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+      crossorigin="anonymous"
+    />
+    <!-- Vegas -->
+    <link rel="stylesheet" href="vegas/vegas.min.css" />
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="images/icon.png" />
+    <style>
+      /* 全文中文字型設定 */
+      body {
+        font-family: "微軟正黑體";
+        transition: 0.5s;
+      }
+
+      /* 導覽列半透明背景 */
+      .bg-opacity {
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0),
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.8)
+        );
+      }
+
+      /* 關於裡的文字行高控制 */
+      .lh {
+        line-height: 200%;
+      }
+
+      /* 索引RWD的部分 */
+      @media screen and (max-width: 960px) {
+        .rwd {
+          flex-direction: column;
+        }
+      }
+
+      /* 頁尾樣式 */
+      footer {
+        color: #fff;
+        background: #000;
+        text-align: center;
+        bottom: 0;
+      }
+
+      /* 頁尾icon */
+      .icon {
+        width: 30px;
+        height: 30px;
+        filter: contrast(0) brightness(300%);
+      }
+
+      /* dove動畫 */
+      @keyframes slideOutUp {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(0.8, 0.8);
+        }
+
+        50% {
+          visibility: hidden;
+          -webkit-transform: translate3d(0, -20%, 0);
+          transform: translate3d(0, -40%, 0) scale(0.3, 0.3);
+        }
+        100% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(0.8, 0.8);
+        }
+      }
+
+      /* dove動畫2 */
+      @keyframes slideOutUp2 {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(1, 1);
+        }
+
+        50% {
+          visibility: hidden;
+          -webkit-transform: translate3d(0, -20%, 0);
+          transform: translate3d(0, -40%, 0) scale(1, 1);
+        }
+        100% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(1, 1);
+        }
+      }
+
+      /* dove */
+      .dove {
+        /* filter: drop-shadow(10px 10px 10px #000); */
+        animation: slideOutUp 5s infinite;
+      }
+
+      /* 置頂按鈕 */
+      .toTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 80px;
+        height: 80px;
+        animation: slideOutUp2 5s infinite;
+        cursor: pointer;
+        /* background:linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, .8)); */
+        border-radius: 50%;
+        transition: 0.5s;
+      }
+
+      .toTop:hover {
+        filter: brightness(120%);
+      }
+
+      .toTop img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /*  動畫*/
+      @keyframes rubberBand {
+        from {
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+        }
+
+        30% {
+          -webkit-transform: scale3d(1.25, 0.75, 1);
+          transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+          -webkit-transform: scale3d(0.75, 1.25, 1);
+          transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+          -webkit-transform: scale3d(1.15, 0.85, 1);
+          transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+          -webkit-transform: scale3d(0.95, 1.05, 1);
+          transform: scale3d(0.95, 1.05, 1);
+        }
+
+        75% {
+          -webkit-transform: scale3d(1.05, 0.95, 1);
+          transform: scale3d(1.05, 0.95, 1);
+        }
+
+        to {
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+        }
+      }
+
+      .rubberBand {
+        -webkit-animation-name: rubberBand;
+        animation-name: rubberBand;
+      }
+
+      .text-ani {
+        animation: rubberBand 1s infinite;
+      }
+
+      /* 主選單 進場動畫CSS 配JQ*/
+      .mainWrap {
+        opacity: 0;
+        transition: 1s;
+        background: #eee;
+      }
+
+      /* .css('width', '100%')  width: 0; */
+
+      /* Vegas 開始 */
+      .vegas {
+        height: 100vh;
+      }
+      /* Vegas 結束 */
+
+      /* 關於開始 */
+      .vegasSmall {
+        width: 100%;
+        height: 300px;
+        /* margin: auto; */
+      }
+
+      /* CUBE */
+      .wrapper {
+        perspective: 500px;
+        transform: translateY(-9000px);
+        transition: 1s;
+      }
+
+      @keyframes ani1 {
+        0% {
+          transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+        }
+
+        90% {
+          transform: translateZ(-100px) rotateX(0deg) rotateY(360deg);
+        }
+
+        100% {
+          transform: translateZ(-100px) rotateX(360deg) rotateY(360deg);
+        }
+      }
+
+      .wrap {
+        animation: ani1 10s infinite;
+        transform-style: preserve-3d;
+        width: 300px;
+        height: 200px;
+        position: relative;
+        transform: translateZ(0px);
+        margin: 0 auto;
+      }
+
+      .box {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        text-align: center;
+        line-height: 150px;
+        color: #fff;
+        opacity: 0.5;
+        position: absolute;
+        font-size: 3rem;
+      }
+
+      .front {
+        transform: rotateY(0deg) translateZ(150px);
+      }
+
+      .back {
+        transform: rotateY(180deg) translateZ(150px);
+      }
+
+      .left {
+        transform: rotateY(-90deg) translateZ(150px);
+      }
+
+      .right {
+        transform: rotateY(90deg) translateZ(150px);
+      }
+
+      /* .top {
+  transform: rotateX( 90deg) translateZ(100px);
+}
+.bottom {
+  transform:rotateX( -90deg) translateZ(100px);
+} */
+      .box img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        display: block;
+      }
+      /* 關於結束 */
+      /* 表單開始 */
+      .form2 {
+        display: none;
+      }
+      .submit3 {
+        display: none;
+      }
+      .showText2 {
+        color: red;
+      }
+      .box300 {
+        height: 300px;
+      }
+      /* 表單結束 */
+      /* navbarHide */
+      .navbar {
+        transition: 0.5s;
+      }
+      .navbar.hide_nav {
+        transform: translateY(-100px);
+      }
+      .progress {
+        transition: 0.5s;
+      }
+      .progress.hide_nav {
+        transform: translateY(-100px);
+      }
+      @media screen and (max-width: 768px) {
+        .navbar.hide_nav {
+          transform: translateY(0px);
+        }
+      }
+      /* navbarHide */
+      /* 3d slider */
+      .bodyWrap {
+        margin: 0;
+        padding: 0;
+        /* height: 100vh; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* background: #aaa; */
+        perspective: 1500px;
+      }
+
+      .wrap91 {
+        /* animation: ani9 10s infinite linear; */
+        transform-style: preserve-3d;
+        width: 600px;
+        height: 300px;
+        position: relative;
+        transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+        margin: 0 auto;
+        transition: 0.5s;
+      }
+
+      .box91 {
+        width: 600px;
+        height: 300px;
+        background: #000;
+        text-align: center;
+        /* line-height: 150px; */
+        color: #fff;
+        opacity: 1;
+        position: absolute;
+        font-size: 1.2rem;
+        border: 3px solid #fff;
+        transition: 0.5s;
+        padding: 10px;
+      }
+      .box91 h2,
+      .box91 p {
+        text-align: left;
+      }
+
+      .front91 {
+        transform: rotateY(0deg) translateZ(350px);
+      }
+
+      .back91 {
+        transform: rotateY(180deg) translateZ(350px);
+      }
+
+      .left91 {
+        transform: rotateY(-90deg) translateZ(350px);
+      }
+
+      .right91 {
+        transform: rotateY(90deg) translateZ(350px);
+      }
+
+      .top91 {
+        transform: rotateX(90deg) translateZ(75px);
+      }
+
+      .bottom91 {
+        transform: rotateX(-90deg) translateZ(75px);
+      }
+      .lrHeight {
+        margin-top: 60px;
+      }
+      @media screen and (max-width: 768px) {
+        .lrHeight {
+          margin-top: 25px;
+        }
+        .wrap91 {
+          /* animation: ani9 10s infinite linear; */
+          transform-style: preserve-3d;
+          width: 280px;
+          height: 350px;
+          position: relative;
+          transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+          margin: 0 auto;
+          transition: 0.5s;
+        }
+
+        .box91 {
+          margin: 0 auto;
+          width: 280px;
+          height: 350px;
+          background: #000;
+          text-align: center;
+          /* line-height: 150px; */
+          color: #fff;
+          opacity: 1;
+          position: absolute;
+          font-size: 1rem;
+          border: 3px solid #fff;
+          transition: 0.5s;
+        }
+        .box91 h2 {
+          font-size: 1.2rem;
+          text-align: left;
+          margin-left: 5px;
+        }
+        .box91 p {
+          font-size: 1rem;
+          text-align: left;
+          margin-left: 5px;
+        }
+
+        .front91 {
+          transform: rotateY(0deg) translateZ(140px);
+        }
+
+        .back91 {
+          transform: rotateY(180deg) translateZ(140px);
+        }
+
+        .left91 {
+          transform: rotateY(-90deg) translateZ(140px);
+        }
+
+        .right91 {
+          transform: rotateY(90deg) translateZ(140px);
+        }
+        .imgHeight {
+          width: 280px;
+          /* height: 100px; */
+        }
+        .imgInside {
+          object-fit: contain;
+          display: block;
+          width: 100%;
+          height: 100%;
+          /* object-position: 0px 0px; */
+          /* border: 2px solid #fff; */
+        }
+      }
+
+      /* 方向按鈕開始 */
+      .controlLeft {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px solid #000;
+        /* position: fixed; */
+        /* bottom: 20px; */
+        /* right: 80px; */
+        text-align: center;
+        line-height: 35px;
+        font-size: 2rem;
+        font-weight: 800;
+        cursor: pointer;
+        user-select: none;
+        /* transition: .5s; */
+      }
+
+      .controlRight {
+        /* transition: .5s; */
+        cursor: pointer;
+        font-weight: 800;
+        text-align: center;
+        line-height: 35px;
+        font-size: 2rem;
+        /* position: fixed; */
+        /* bottom: 20px; */
+        /* right: 20px; */
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px solid #000;
+        user-select: none;
+      }
+
+      .controlLeft:active {
+        transform: scale(1.2, 1.2);
+      }
+
+      .controlRight:active {
+        transform: scale(1.2, 1.2);
+      }
+
+      /* 方向按鈕結束 */
+      .opacity1 {
+        opacity: 0.3;
+      }
+      /* 圖片控制大小 */
+      .imgInside {
+        object-fit: contain;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-position: 20px 20px;
+        /* border: 2px solid #fff; */
+      }
+
+      /* 圖片控制大小 */
+      /* 3d slider */
+    </style>
+  </head>
+
+  <body>
+    <!-- 進度條開始 -->
+    <div class="progress fixed-top bg-opacity" style="height: 50px">
+      <div
+        id="progress"
+        class="progress-bar bg-dark"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100 w-100"
+      ></div>
+    </div>
+    <!-- 進度條結束 -->
+
+    <!-- 導覽列開始 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-opacity fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#" id="brand">魔術指南</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <!-- 首頁 -->
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                >首頁 <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <!-- 關於 -->
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"
+                >關於 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 道具介紹 -->
+            <li class="nav-item">
+              <a class="nav-link" href="stuff.html"
+                >道具介紹 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 表演策略 -->
+            <li class="nav-item active">
+              <a class="nav-link" href="strategy.html"
+                >表演策略 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 聯繫方式 -->
+            <li class="nav-item">
+              <a class="nav-link" href="" onclick="alert('暫不提供')"
+                >聯繫方式</a
+              >
+            </li>
+            <!-- 時間 -->
+            <!-- <li class="nav-item">
+                    </li> -->
+          </ul>
+          <!-- 搜尋按鈕 -->
+          <a class="nav-link time-now disabled text-light">時間</a>
+          <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">搜尋</button>
+                </form> -->
+        </div>
+      </div>
+    </nav>
+    <!-- 導覽列結束 -->
+
+    <!-- 輪播Vegas開始 -->
+    <div class="vegas"></div>
+    <!-- 輪播Vegas結束 -->
+
+    <!-- 主選單開始 區塊一-->
+    <div class="mainWrap py-4">
+      <div class="container w-50">
+        <h2 class="text-center my-4 text-ani">表演策略</h2>
+      </div>
+      <div class="container my-4">
+        <div
+          class="row m-1 p-3"
+          style="border: 3px dashed lightblue; border-radius: 20px"
+        >
+          <div class="box300 col-md-4">
+            <img
+              src="images/question.jpg"
+              class="qStory"
+              alt=""
+              style="object-fit: contain; width: 100%; height: 100%"
+            />
+          </div>
+
+          <div class="col-md-8 p-4">
+            <!-- QA表單開始 -->
+            <h2>Q&A應該要進行何種類型的表演?</h2>
+            <form action="" class="form-control form1">
+              <p>Q1:您的表演場地是在室內還是在戶外?</p>
+              <input type="radio" name="Q1" value="A" />室內<br />
+              <input type="radio" name="Q1" value="B" />戶外<br />
+              <button type="button" class="btn btn-info my-2 submit1">
+                確認送出
+              </button>
+              <p>
+                Tips:
+                <span class="showText1 ml-4 text-danger"></span>
+              </p>
+            </form>
+            <form action="" class="form-control form2">
+              <p>Q2:您預計觀看表演的人數會落在那裡?</p>
+              <input type="radio" name="Q2" value="C" />數十人<br />
+              <input type="radio" name="Q2" value="D" />數百人<br />
+              <button type="button" class="btn btn-danger my-2 submit3">
+                重新來過
+              </button>
+              <button type="button" class="btn btn-info my-2 submit2">
+                確認送出
+              </button>
+              <p>
+                Tips:
+                <span class="showText2 ml-4"></span>
+              </p>
+            </form>
+            <!-- QA表單結束 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 主選單結束 區塊一-->
+
+      <!-- 區塊二 3D begin -->
+      <div class="container w-50">
+        <h2 class="text-center mt-5 mb-3 text-ani">更多</h2>
+      </div>
+      <div class="container py-4">
+        <div class="bodyWrap pt-5">
+          <div class="wrap91">
+            <div class="box91 front91">
+              <div class="row d-flex flex-column flex-md-row">
+                <div class="col-md-6 imgHeight">
+                  <img class="imgInside egg1" src="images/card.jpg" alt="" />
+                </div>
+                <div class="col-md-6">
+                  <h2 class="mt-3 pr-3">提示</h2>
+                  <p>點擊下面控制按鈕左右旋轉</p>
+                </div>
+              </div>
+            </div>
+            <div class="box91 back91">
+              <div class="row d-flex flex-column flex-md-row">
+                <div class="col-md-6 imgHeight">
+                  <img
+                    class="imgInside"
+                    style="height: 200px"
+                    src="images/pic1.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="col-md-6">
+                  <h2 class="mt-3 pr-3">如何讓表演更具說服力</h2>
+                  <p class="">
+                    安排適當的小破綻或講個笑話可以讓觀眾放鬆,進而提升效果出現後的效果
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box91 left91">
+              <div class="row d-flex flex-column flex-md-row">
+                <div class="col-md-6 imgHeight">
+                  <img class="imgInside" src="images/pic2.jpg" alt="" />
+                </div>
+                <div class="col-md-6">
+                  <h2 class="mt-3 pr-3">如何安排表演效果</h2>
+                  <p>
+                    開場適合視覺上較明顯的效果,再放入有劇情的橋段和呼應開場的效果,可以讓整體表演更具備一致性
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box91 right91">
+              <div class="row d-flex flex-column flex-md-row">
+                <div class="col-md-6 imgHeight">
+                  <img class="imgInside" src="images/pic3.jpg" alt="" />
+                </div>
+                <div class="col-md-6">
+                  <h2 class="mt-3 pr-3">表演時道具掉了怎麼辦</h2>
+                  <p>撿起來,放回去</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="box9 top9"></div> -->
+            <!-- <div class="box9 bottom9"></div> -->
+          </div>
+          <div class="container d-flex justify-content-center lrHeight">
+            <div class="controlLeft mr-2">←</div>
+            <div class="controlRight ml-2">→</div>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊二 3D end-->
+    </div>
+
+    <!-- 頁尾開始-->
+
+    <footer class="py-4">
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>魔術指南</h3>
+            <p style="font-size: 0.8em">Website designed by David Huang</p>
+          </div>
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>分享</h3>
+            <div>
+              <p style="font-size: 0.8em">
+                <img
+                  class="icon"
+                  style="margin-right: 5px"
+                  src="images/github.png"
+                  alt=""
+                />
+                https://github.com/ckhoct<br />Icon made by Pixel Buddha from
+                www.flaticon.com
+              </p>
+
+              <!-- <a href="">
+                            <img class="icon" src="images/facebook-logo-button.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/instagram-logo.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/linkedin-logo-button.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/twitter-logo-button.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/google-plus-logo-button.svg" alt="">
+                        </a> -->
+            </div>
+          </div>
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>聯繫方式</h3>
+            <p style="font-size: 0.8em">
+              <img
+                class="icon"
+                style="margin-right: 5px"
+                src="images/envelope.svg"
+                alt=""
+              />
+              ckhoct@gmail.com<br />Icon made by Gregor Cresnar from
+              www.flaticon.com
+            </p>
+          </div>
+        </div>
+        <!-- 頁尾結束 -->
+
+        <!-- 置頂按鈕開始 -->
+        <a class="toTop up" id="toTop">
+          <img src="images/animal.png" alt="" />
+        </a>
+        <!-- 置頂按鈕結束 -->
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+      integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Vegas -->
+    <script src="vegas/vegas.min.js"></script>
+    <!-- Vegas -->
+
+    <script>
+      // brand
+      var brand = document.getElementById("brand");
+      brand.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.clear();
+      });
+      // brand
+      // qStory 彩蛋
+      $(".qStory").click(function () {
+        if (
+          confirm(
+            '發現彩蛋 : "來自cc0的免費圖片"\n彩蛋獎勵 : "Q&A設計說明書"\n領取方式 : 按下"確定打開" 按下"取消"離開\n\n Designed by David Huang'
+          )
+        ) {
+          alert(
+            '"Q&A設計說明書"\n\n1.此表單共兩題每題兩個選項\n2.總共有4種結果先放在陣列裡\n3.會依據不同選項的答案獲取不同的分數\n4.依照最後分數可以得到不同的Tips'
+          );
+        }
+      });
+      // qStory 彩蛋
+      // 底下這段用於時間
+      var f1 = function () {
+        setTimeout(function () {
+          var x = document.getElementsByClassName("time-now");
+          var i;
+          var y = new Date().toString().split(" ");
+          for (i = 0; i < x.length; i++) {
+            x[i].innerHTML = "歡迎來到魔術指南 現在時間是:" + y[4];
+          }
+          setTimeout(f1, 1000);
+        });
+      };
+      f1();
+      //上面這段用於時間
+
+      //底下這段用於導覽進度條
+      $(window).scroll(function () {
+        var s = $(this).scrollTop();
+        var windowHeight = $(window).height();
+        var pageHeight = $("body").height();
+        var scrollPercent =
+          Math.round((s / (pageHeight - windowHeight)) * 100) + "%";
+        $("#progress").css("width", scrollPercent);
+        if (s > 1000) {
+          $("body").css("background", "#eee");
+        } else {
+          $("body").css("background", "#fff");
+        }
+      });
+      //上面這段用於導覽進度條
+
+      // 置頂開始
+      $(".toTop").click(function () {
+        $("body,html").animate(
+          {
+            scrollTop: 0,
+          },
+          300
+        );
+      });
+      // 置頂結束
+
+      //主選單特效開始
+      $(window).scroll(function () {
+        let scrollNow = $(this).scrollTop();
+        console.log(scrollNow);
+        let scrollHeight = $(window).height();
+        console.log(scrollHeight);
+        if (scrollNow >= scrollHeight / 2) {
+          // $('.mainWrap').css('top', scrollHeight + 'px').css('opacity','1')
+          $(".mainWrap")
+            .css("top", scrollHeight + "px")
+            .css("opacity", "1");
+        }
+      });
+      //主選單特效結束
+
+      //Vegas
+      $(".vegas").vegas({
+        animation: "kenburnsDown",
+        overlay: "vegas/overlays/03.png",
+        slides: [
+          { src: "images/silver.jpg" },
+          { src: "images/letters.jpg" },
+          { src: "images/card.jpg" },
+        ],
+      });
+      //Vegas
+
+      //關於開始
+
+      $(".vegasSmall")
+        .eq(0)
+        .vegas({
+          animation: "kenburnsDown",
+          transition: "slideLeft",
+          overlay: "vegas/overlays/03.png",
+          delay: 5000,
+          slides: [{ src: "images/book.jpg" }, { src: "images/books.jpg" }],
+        });
+      $(".vegasSmall")
+        .eq(1)
+        .vegas({
+          animation: "kenburnsDown",
+          transition: "slideLeft",
+          overlay: "vegas/overlays/03.png",
+          delay: 5000,
+          slides: [
+            { video: { src: ["videos/v1.MOV"], loop: true, mute: true } },
+          ],
+        });
+
+      $(window).scroll(function () {
+        var scrollNow = $(this).scrollTop();
+      });
+
+      //關於結束
+    </script>
+    <!-- 邏輯流程控制表單 -->
+    <script>
+      //   var array = ['BD','BC','AD','AC']
+      var array = [
+        "適合有搭建小舞台的互動表演,注意周遭地形,風向與鏡面會不會對表演造成影響",
+        "適合街頭隨興表演,避免在起風的時候進行表演",
+        "適合大型舞台表演,要特別注意室內的溫度與冷氣對準備的道具是否會有影響",
+        "適合沿桌互動表演,可以準備兩套流程在每桌輪流做替換",
+      ];
+      var score = 0;
+      $(".submit1").click(function () {
+        var answer = $("input[name=Q1]:checked").val();
+        if (answer == null) {
+          $(".showText1").text("你還未選取選項");
+          return false;
+        }
+        if (answer == "A") {
+          score += 2;
+          $(".form1").css("display", "none");
+          $(".form2").css("display", "block");
+        } else {
+          $(".form1").css("display", "none");
+          $(".form2").css("display", "block");
+        }
+      });
+      $(".submit2").click(function () {
+        var answer = $('input[name="Q2"]:checked').val();
+        if (answer == null) {
+          $(".showText2").text("你還未選取選項");
+          return false;
+        }
+        if (answer == "C") {
+          score += 1;
+          $(".showText2")
+            .text(array[score])
+            .css("color", "blue")
+            .css("font-weight", "600");
+          $(".submit2").css("display", "none");
+          $(".submit3").css("display", "inline");
+        } else {
+          $(".showText2")
+            .text(array[score])
+            .css("color", "blue")
+            .css("font-weight", "600");
+          $(".submit2").css("display", "none");
+          $(".submit3").css("display", "inline");
+        }
+      });
+      $(".submit3").click(function () {
+        score = 0;
+        $(".form1").css("display", "block");
+        $(".form2").css("display", "none");
+        $(this).css("display", "none");
+        $(".submit2").css("display", "inline");
+        $(".showText1").text("");
+        $(".showText2").text("");
+        //底下取消radio選取
+        var x = document.getElementsByName("Q1");
+        var y = document.getElementsByName("Q2");
+        for (var i = 0; i < x.length; i++) {
+          if (x[i].checked == true) {
+            x[i].checked = false;
+          }
+        }
+        for (var i = 0; i < y.length; i++) {
+          if (y[i].checked == true) {
+            y[i].checked = false;
+          }
+        }
+        //上面取消radio選取
+      });
+    </script>
+    <!-- 表單結束 -->
+    <!-- navHide -->
+    <script>
+      var scrollLast = 0;
+      $(window).scroll(function () {
+        let scrollNow = $(this).scrollTop();
+        console.log(scrollNow);
+        if (scrollNow > scrollLast) {
+          $(".navbar").addClass("hide_nav");
+          // $('.progress').addClass('hide_nav');
+        } else {
+          $(".navbar").removeClass("hide_nav");
+          // $('.progress').removeClass('hide_nav');
+        }
+        scrollLast = scrollNow;
+      });
+    </script>
+
+    <!-- navHide -->
+    <!-- 3D Slider Begin -->
+    <script>
+      var i = 0;
+      var ii = -100;
+      window.addEventListener("keydown", function () {
+        console.log(event.keyCode);
+        switch (event.keyCode) {
+          case 37:
+            console.log("left");
+            i += 90;
+            $(".wrap91").css(
+              "transform",
+              `translateZ(${ii}px) rotateY(${i}deg)`
+            );
+            $(".controlLeft").css("transform", "scale(1.2,1.2)");
+            setTimeout(function () {
+              $(".controlLeft").css("transform", "scale(1,1)");
+            }, 100);
+            break;
+          case 39:
+            console.log("right");
+            i -= 90;
+            $(".wrap91").css(
+              "transform",
+              `translateZ(${ii}px) rotateY(${i}deg)`
+            );
+            $(".controlRight").css("transform", "scale(1.2,1.2)");
+            setTimeout(function () {
+              $(".controlRight").css("transform", "scale(1,1)");
+            }, 100);
+            break;
+          case 79:
+            $(".box91").toggleClass("opacity1");
+            break;
+          case 107:
+            ii -= 90;
+            $(".wrap91").css("transform", `translateZ(${ii}px)`);
+            break;
+          case 109:
+            if (ii >= 0) return false;
+            ii += 90;
+            $(".wrap91").css("transform", `translateZ(${ii}px)`);
+            break;
+        }
+      });
+      $(".controlLeft").click(function () {
+        i += 90;
+        $(".wrap91").css("transform", `rotateY(${i}deg)`);
+        $(".controlLeft").css("transform", "scale(1.2,1.2)");
+        setTimeout(function () {
+          $(".controlLeft").css("transform", "scale(1,1)");
+        }, 100);
+      });
+      $(".controlRight").click(function () {
+        i -= 90;
+        $(".wrap91").css("transform", `rotateY(${i}deg)`);
+        $(".controlRight").css("transform", "scale(1.2,1.2)");
+        setTimeout(function () {
+          $(".controlRight").css("transform", "scale(1,1)");
+        }, 100);
+      });
+      // setInterval(function(){
+      //     i += 90
+      //     $('.wrap9').css('transform', `rotateY(${i}deg)`)
+      // },500)
+    </script>
+    <!-- 3D Slider End -->
+    <!-- 彩蛋開始 -->
+    <script>
+      $(".egg1").click(function () {
+        // alert('發現彩蛋 : "按下黑桃ACE"\n彩蛋獎勵 : "按下確定後解鎖隱藏訊息"\n\n Designed by David Huang')
+        if (
+          confirm(
+            '發現彩蛋 : "黑桃ACE"\n彩蛋獎勵 : "3D Slider的設計說明書"\n獎勵取得方式 : 按下"確定"鍵領取 按下"取消"鍵離開\n\n Designed by David Huang'
+          )
+        ) {
+          alert(
+            '"關於3D Slider的操作方式"\n\n 鍵盤"O"鍵 : 改變透明度\n 數字鍵盤的"+","-"鍵 : 改變景深\n 方向鍵 : 左右旋轉'
+          );
+        } else {
+        }
+      });
+    </script>
+    <!-- 彩蛋結束 -->
+  </body>
+</html>

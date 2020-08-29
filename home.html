@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>魔術指南</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+      crossorigin="anonymous"
+    />
+    <!-- Vegas -->
+    <link rel="stylesheet" href="vegas/vegas.min.css" />
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="images/icon.png" />
+    <style>
+      /* 全文中文字型設定 */
+      body {
+        font-family: "微軟正黑體";
+        transition: 0.5s;
+        overflow: hidden;
+      }
+
+      /* 導覽列半透明背景 */
+      .bg-opacity {
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0),
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.8)
+        );
+      }
+
+      /* 控制banner大小100vh */
+      .size-self {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+
+      /* 關於裡的文字行高控制 */
+      .lh {
+        line-height: 200%;
+      }
+
+      /* 索引RWD的部分 */
+      @media screen and (max-width: 960px) {
+        .rwd {
+          flex-direction: column;
+        }
+      }
+
+      /* 頁尾樣式 */
+      footer {
+        color: #fff;
+        background: #000;
+        text-align: center;
+        bottom: 0;
+      }
+
+      /* 頁尾icon */
+      .icon {
+        width: 30px;
+        height: 30px;
+        filter: contrast(0) brightness(300%);
+      }
+
+      /*  */
+
+      /* 卡片陰影 */
+      .card {
+        filter: drop-shadow(10px 10px 10px #000);
+      }
+
+      /* 圖片hover效果 */
+      .effect:hover {
+        filter: brightness(150%);
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      /* dove動畫 */
+      @keyframes slideOutUp {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(0.8, 0.8);
+        }
+
+        50% {
+          visibility: hidden;
+          -webkit-transform: translate3d(0, -20%, 0);
+          transform: translate3d(0, -40%, 0) scale(0.3, 0.3);
+        }
+        100% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(0.8, 0.8);
+        }
+      }
+
+      /* dove動畫2 */
+      @keyframes slideOutUp2 {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(1, 1);
+        }
+
+        50% {
+          visibility: hidden;
+          -webkit-transform: translate3d(0, -20%, 0);
+          transform: translate3d(0, -40%, 0) scale(1, 1);
+        }
+        100% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0) scale(1, 1);
+        }
+      }
+
+      /* dove */
+      .dove {
+        /* filter: drop-shadow(10px 10px 10px #000); */
+        animation: slideOutUp 5s infinite;
+      }
+
+      /* 置頂按鈕 */
+      .toTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 80px;
+        height: 80px;
+        animation: slideOutUp2 5s infinite;
+        cursor: pointer;
+        /* background:linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, .8)); */
+        border-radius: 50%;
+        transition: 0.5s;
+      }
+
+      .toTop:hover {
+        filter: brightness(120%);
+      }
+
+      .toTop img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /*  動畫*/
+      @keyframes rubberBand {
+        from {
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+        }
+
+        30% {
+          -webkit-transform: scale3d(1.25, 0.75, 1);
+          transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+          -webkit-transform: scale3d(0.75, 1.25, 1);
+          transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+          -webkit-transform: scale3d(1.15, 0.85, 1);
+          transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+          -webkit-transform: scale3d(0.95, 1.05, 1);
+          transform: scale3d(0.95, 1.05, 1);
+        }
+
+        75% {
+          -webkit-transform: scale3d(1.05, 0.95, 1);
+          transform: scale3d(1.05, 0.95, 1);
+        }
+
+        to {
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+        }
+      }
+
+      .rubberBand {
+        -webkit-animation-name: rubberBand;
+        animation-name: rubberBand;
+      }
+
+      .text-ani {
+        animation: rubberBand 1s infinite;
+      }
+
+      /* 主選單 */
+      .imgSelf {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+        filter: drop-shadow(10px 10px 10px #000);
+        border: 5px solid #000;
+      }
+
+      .aSelf:hover .imgSelf {
+        filter: blur(5px);
+        text-decoration: none;
+      }
+
+      .cover {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        transition: 0.5s;
+      }
+
+      .aSelf,
+      .aSelf:visited,
+      .aSelf:hover {
+        color: #fff;
+      }
+
+      .aSelf:hover .cover {
+        opacity: 0.9;
+      }
+
+      .bg-self {
+        background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+      }
+
+      .box {
+        height: 300px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .box {
+          height: 300px;
+        }
+        .cover {
+          opacity: 0.9;
+        }
+      }
+
+      /* 主選單 進場動畫CSS 配JQ*/
+      .mainWrap {
+        width: 0;
+        opacity: 0;
+        transition: 1s;
+        background: #eee;
+      }
+
+      /* .css('width', '100%')  width: 0; */
+
+      /* 保護頁面開始 */
+      .wrapper {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        opacity: 1;
+        transition: 0.5s;
+        display: block;
+      }
+
+      .bigWrap {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #aaa;
+        perspective: 1500px;
+      }
+
+      @keyframes ani1 {
+        0% {
+          transform: translateY(25px) rotateX(0deg) rotateY(0deg);
+        }
+
+        50% {
+          transform: translateY(25px) rotateX(360deg) rotateY(180deg);
+        }
+        100% {
+          transform: translateY(25px) rotateX(0deg) rotateY(0deg);
+        }
+      }
+      @keyframes ani3 {
+        0% {
+          transform: translateY(25px) rotateX(0deg) rotateY(0deg);
+        }
+        100% {
+          transform: translateY(25px) rotateX(360deg) rotateY(360deg);
+        }
+      }
+
+      .wrap {
+        animation: ani1 5s infinite linear;
+        transform-style: preserve-3d;
+        width: 234px;
+        height: 330px;
+        position: relative;
+        transform: translateZ(0px);
+        margin: 0 auto;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .wrap:hover {
+        animation-play-state: paused;
+        /* animation: forwards; */
+      }
+
+      .boxx {
+        transition: 1s;
+      }
+
+      .box1 {
+        width: 234px;
+        height: 330px;
+        position: absolute;
+      }
+
+      .box2 {
+        position: absolute;
+        width: 60px;
+        height: 330px;
+      }
+
+      .box3 {
+        position: absolute;
+        width: 234px;
+        height: 60px;
+      }
+
+      .imgCard {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+      /* 控制牌盒顏色 */
+      .colorChange {
+        filter: hue-rotate(230deg) contrast(200%);
+      }
+
+      .bg-blue {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background: #0029da;
+        cursor: pointer;
+        transition: 0.5s;
+        border: 3px solid #fff;
+      }
+      .bg-blue:hover {
+        filter: brightness(150%);
+      }
+
+      .bg-red {
+        background: #bb2d39;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        cursor: pointer;
+        transition: 0.5s;
+        border: 3px solid #fff;
+      }
+      .bg-red:hover {
+        filter: brightness(150%);
+      }
+      /* 控制牌盒顏色 */
+
+      .front {
+        transform: rotateY(0deg) translateZ(30px);
+      }
+
+      .back {
+        transform: rotateY(180deg) translateZ(30px);
+      }
+
+      .left {
+        transform: rotateY(-90deg) translateZ(30px);
+      }
+
+      .right {
+        transform: rotateY(90deg) translateZ(200px);
+      }
+
+      .top {
+        transform: rotateX(90deg) translateZ(30px);
+      }
+
+      .bottom {
+        transform: rotateX(-90deg) translateZ(300px);
+      }
+
+      .cardAce {
+        filter: drop-shadow(5px 5px 5px #000);
+        transform: scale(0.9, 0.9);
+        border-radius: 10px;
+        color: #000;
+      }
+
+      .cardAce h2 {
+        text-align: center;
+        line-height: 150px;
+        font-weight: 600;
+        font-size: 3rem;
+        color: #000;
+      }
+
+      .showText {
+        color: red;
+      }
+
+      /* 保護頁面結束 */
+
+      /* Vegas 開始 */
+      .vegas {
+        height: 100vh;
+      }
+      /* Vegas 結束 */
+
+      /* 外 黑盒*/
+      @keyframes ani9 {
+        from {
+          transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+        }
+        to {
+          transform: translateZ(-100px) rotateX(0deg) rotateY(360deg);
+        }
+      }
+
+      .wrap9 {
+        animation: ani9 5s infinite linear;
+        transform-style: preserve-3d;
+        width: 380px;
+        height: 380px;
+        position: relative;
+        transform: translateZ(0px);
+        margin: 0 auto;
+      }
+      /* .wrap9:hover .box9{
+            opacity: 0;
+            display: none;
+        } */
+
+      .box9 {
+        transition: 0.5s;
+        width: 380px;
+        height: 380px;
+        background: #000;
+        text-align: center;
+        line-height: 150px;
+        color: #fff;
+        opacity: 0.1;
+        position: absolute;
+        font-size: 3rem;
+        border: 5px solid #fff;
+      }
+
+      .front9 {
+        transform: rotateY(0deg) translateZ(190px);
+      }
+
+      .back9 {
+        transform: rotateY(180deg) translateZ(190px);
+      }
+
+      .left9 {
+        transform: rotateY(-90deg) translateZ(190px);
+      }
+
+      .right9 {
+        transform: rotateY(90deg) translateZ(190px);
+      }
+
+      .top9 {
+        transform: rotateX(90deg) translateZ(190px);
+      }
+
+      .bottom9 {
+        transform: rotateX(-90deg) translateZ(190px);
+      }
+      /* 外 */
+      /* 行動版黑盒控制開始 */
+      @media screen and (max-width: 768px) {
+        .wrap {
+          animation: ani3 1s linear;
+          transform: translateY(25px) rotateX(0deg) rotateY(0deg);
+        }
+        /* .wrap9{
+                animation: ani9 1s linear;
+                transform: translateZ(-100px) rotateX( 0deg) rotateY( 0deg);
+            } */
+        .box9 {
+          display: none;
+        }
+      }
+      /* 行動版黑盒控制結束 */
+      /* navbarHide */
+      .navbar {
+        transition: 0.5s;
+      }
+      .navbar.hide_nav {
+        transform: translateY(-100px);
+      }
+      .progress {
+        transition: 0.5s;
+      }
+      .progress.hide_nav {
+        transform: translateY(-100px);
+      }
+      @media screen and (max-width: 768px) {
+        .navbar.hide_nav {
+          transform: translateY(0px);
+        }
+      }
+      /* navbarHide */
+      .opacity0 {
+        opacity: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 進度條開始 -->
+    <div class="progress fixed-top bg-opacity" style="height: 50px">
+      <div
+        id="progress"
+        class="progress-bar bg-dark"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100 w-100"
+      ></div>
+    </div>
+    <!-- 進度條結束 -->
+
+    <!-- 導覽列開始 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-opacity fixed-top">
+      <div class="container">
+        <a class="navbar-brand" id="brand" href="">魔術指南</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <!-- 首頁 -->
+            <li class="nav-item active">
+              <a class="nav-link" href="home.html"
+                >首頁 <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <!-- 關於 -->
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"
+                >關於 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 道具介紹-->
+            <li class="nav-item">
+              <a class="nav-link" href="stuff.html"
+                >道具介紹 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 表演策略 -->
+            <li class="nav-item">
+              <a class="nav-link" href="strategy.html"
+                >表演策略 <span class="sr-only"></span
+              ></a>
+            </li>
+            <!-- 聯繫方式 -->
+            <li class="nav-item">
+              <a class="nav-link" href="" onclick="alert('暫不提供')"
+                >聯繫方式</a
+              >
+            </li>
+            <!-- 時間 -->
+          </ul>
+          <!-- 搜尋按鈕 -->
+          <!-- <form class="form-inline my-2 my-lg-0"> -->
+          <!-- <li class="nav-item"> -->
+          <a class="nav-link time-now disabled text-light">時間</a>
+          <!-- </li> -->
+          <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">搜尋</button> -->
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>
+    <!-- 導覽列結束 -->
+
+    <!-- 輪播Vegas開始 -->
+    <div class="vegas"></div>
+    <!-- 輪播Vegas結束 -->
+
+    <!-- 主選單開始 -->
+    <div class="mainWrap py-4">
+      <div class="container w-50">
+        <h2 class="text-center my-4 text-ani">主選單</h2>
+      </div>
+      <div class="container my-4">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6 p-0 m-2 position-relative box">
+            <a class="aSelf" href="about.html">
+              <img
+                class="position-absolute imgSelf"
+                src="images/book.jpg"
+                alt=""
+              />
+              <div class="cover position-absolute bg-self">
+                <h2
+                  class="text-center position-absolute w-100"
+                  style="bottom: 20px"
+                >
+                  關於
+                </h2>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-5 p-0 m-2 position-relative box">
+            <a class="aSelf" href="stuff.html">
+              <img
+                class="position-absolute imgSelf"
+                src="images/cube.jpg"
+                alt=""
+              />
+              <div class="cover position-absolute bg-self">
+                <h2
+                  class="text-center position-absolute w-100"
+                  style="bottom: 20px"
+                >
+                  道具介紹
+                </h2>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-5 p-0 m-2 position-relative box">
+            <a class="aSelf" href="strategy.html">
+              <img
+                class="position-absolute imgSelf"
+                src="images/fantasy.jpg"
+                alt=""
+              />
+              <div class="cover position-absolute bg-self">
+                <h2
+                  class="text-center position-absolute w-100"
+                  style="bottom: 20px"
+                >
+                  表演策略
+                </h2>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 p-0 m-2 position-relative box">
+            <a class="aSelf" href="">
+              <img
+                class="position-absolute imgSelf"
+                style="object-fit: contain"
+                src="images/animal.png"
+                alt=""
+              />
+              <div class="cover position-absolute bg-self">
+                <h2
+                  class="text-center position-absolute w-100"
+                  style="bottom: 20px"
+                >
+                  聯繫方式
+                </h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主選單結束 -->
+
+    <!-- 頁尾開始-->
+
+    <footer class="py-4">
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>魔術指南</h3>
+            <p style="font-size: 0.8em">Website designed by David Huang</p>
+          </div>
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>分享</h3>
+            <div>
+              <p style="font-size: 0.8em">
+                <img
+                  class="icon"
+                  style="margin-right: 5px"
+                  src="images/github.png"
+                  alt=""
+                />
+                https://github.com/ckhoct<br />Icon made by Pixel Buddha from
+                www.flaticon.com
+              </p>
+
+              <!-- <a href="" style="cursor:auto" disabled>
+                            <img class="icon" src="images/github.png" alt="">
+                        </a> -->
+              <!-- <a href="">
+                            <img class="icon" src="images/instagram-logo.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/linkedin-logo-button.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/twitter-logo-button.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="icon" src="images/google-plus-logo-button.svg" alt="">
+                        </a> -->
+            </div>
+          </div>
+          <div
+            class="col-md-3 m-3"
+            style="border-top: 3px solid #fff; padding-top: 15px"
+          >
+            <h3>聯繫方式</h3>
+            <p style="font-size: 0.8em">
+              <img
+                class="icon"
+                style="margin-right: 5px"
+                src="images/envelope.svg"
+                alt=""
+              />
+              ckhoct@gmail.com<br />Icon made by Gregor Cresnar from
+              www.flaticon.com
+            </p>
+          </div>
+        </div>
+        <!-- 頁尾結束 -->
+
+        <!-- 置頂按鈕開始 -->
+        <a class="toTop up" id="toTop">
+          <img src="images/animal.png" alt="" />
+        </a>
+        <!-- 置頂按鈕結束 -->
+      </div>
+
+      <!-- 保護頁面開始 -->
+      <div class="wrapper">
+        <div class="bigWrap">
+          <div class="wrap9">
+            <div class="box9 front9"></div>
+            <div class="box9 back9"></div>
+            <div class="box9 left9"></div>
+            <div class="box9 right9"></div>
+            <div class="box9 top9"></div>
+            <div class="box9 bottom9"></div>
+            <div class="wrap">
+              <div class="boxx box1 cardAce card">
+                <h2 class="story">魔術指南</h2>
+                <form action="" class="p-4 text-center">
+                  <p class="text-left mb-2 p-0">驗證碼(密碼:123):</p>
+                  <input id="pw" class="bg-light w-100" type="password" />
+                  <button type="button" class="btn btn-info mt-2 mb-2 w-100">
+                    確認
+                  </button>
+                  <br />
+                  <span class="showText"></span>
+                </form>
+              </div>
+              <div class="x boxx box1 front">
+                <img class="imgCard" src="images/front.png" alt="" />
+              </div>
+              <div class="x boxx box1 back">
+                <img class="imgCard" src="images/back.png" alt="" />
+              </div>
+              <div class="x boxx box2 left">
+                <img class="imgCard" src="images/left.png" alt="" />
+              </div>
+              <div class="x boxx box2 right">
+                <img class="imgCard" src="images/right.png" alt="" />
+              </div>
+              <div class="x boxx box3 top">
+                <img class="imgCard" src="images/top.png" alt="" />
+              </div>
+              <div class="x boxx box3 bottom">
+                <img class="imgCard" src="images/bottom.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-blue"></div>
+        <!-- <div class="bg-red"></div> -->
+      </div>
+      <!-- 保護頁面結束 -->
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+      integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Vegas -->
+    <script src="vegas/vegas.min.js"></script>
+    <!-- Vegas -->
+
+    <script>
+      // brand
+      var brand = document.getElementById("brand");
+      brand.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.clear();
+      });
+      // brand
+      // 看是否已經輸入過驗證碼
+      var pass = localStorage.getItem("pass");
+      if (pass == 1) {
+        $("body").css("overflow", "auto");
+        $(".wrapper").css("display", "none");
+      }
+      // 看是否已經輸入過驗證碼
+      // Story 彩蛋教學
+      $(".story").click(function () {
+        if (
+          confirm(
+            '發現彩蛋 : 魔術指南\n彩蛋獎勵 : "表單設計說明書" 與 "驗證碼"\n按下"確定"打開 按下取消"離開"\n\n Designed by David Huang'
+          )
+        ) {
+          alert(
+            '"表單設計說明書" 驗證碼是"123"\n\n1.密碼輸入錯誤超過3次會重新開始\n2.輸入正確密碼但未按過右下角的色相轉換按鈕會重新開始\n3.色相按鈕連續點兩下可以打開另一顆彩蛋\n4.按下"O"鍵可以讓牌盒變透明\n5.按下方向鍵"↓"可以進入3D空間\n6.還有一個隱藏設計可以直接進入網頁的方法沒有寫在這裡\n7.方向鍵"↓"的3D空間按下"空白鍵"可以把長廊變成透明\nDesigned by David Huang'
+          );
+        }
+      });
+      // Story 彩蛋教學
+      // 底下這段用於時間
+      var f1 = function () {
+        setTimeout(function () {
+          var x = document.getElementsByClassName("time-now");
+          var i;
+          var y = new Date().toString().split(" ");
+          for (i = 0; i < x.length; i++) {
+            x[i].innerHTML = "歡迎來到魔術指南 現在時間是:" + y[4];
+          }
+          setTimeout(f1, 1000);
+        });
+      };
+      f1();
+      //上面這段用於時間
+
+      //底下這段用於導覽進度條
+      $(window).scroll(function () {
+        var s = $(this).scrollTop();
+        var windowHeight = $(window).height();
+        var pageHeight = $("body").height();
+        var scrollPercent =
+          Math.round((s / (pageHeight - windowHeight)) * 100) + "%";
+        $("#progress").css("width", scrollPercent);
+        if (s > 1000) {
+          $("body").css("background", "#eee");
+        } else {
+          $("body").css("background", "#fff");
+        }
+      });
+      //上面這段用於導覽進度條
+
+      // 置頂開始
+      $(".toTop").click(function () {
+        $("body,html").animate(
+          {
+            scrollTop: 0,
+          },
+          300
+        );
+      });
+      // 置頂結束
+
+      //主選單特效開始
+      $(window).scroll(function () {
+        let scrollNow = $(this).scrollTop();
+        console.log(scrollNow);
+        let scrollHeight = $(window).height();
+        console.log(scrollHeight);
+        if (scrollNow >= scrollHeight / 2) {
+          // $('.mainWrap').css('top', scrollHeight + 'px').css('opacity','1')
+          $(".mainWrap")
+            .css("top", scrollHeight + "px")
+            .css("width", "100%")
+            .css("opacity", "1");
+        }
+      });
+      //主選單特效結束
+
+      //保護頁面開始
+      var colScore = 0;
+      var missPW = 0;
+      $(".wrap").click(function () {
+        $(".front").css("opacity", "0").css("transform", "translateY(500px)");
+        $(".back")
+          .css("opacity", "0")
+          .css("transform", "rotateY(180deg) translateY(500px)");
+        $(".left")
+          .css("opacity", "0")
+          .css("transform", "rotateY(-90deg) translateZ(500px)");
+        $(".right")
+          .css("opacity", "0")
+          .css("transform", "rotateY(90deg) translateZ(700px)");
+        $(".top")
+          .css("opacity", "0")
+          .css("transform", "rotateX( 90deg) translateZ(500px)");
+        $(".bottom")
+          .css("opacity", "0")
+          .css("transform", "rotateX( -90deg) translateY(500px)");
+        $(".wrap")
+          .css("-webkit-animation", "forwards")
+          .css("-webkit-animation-play-state", "paused")
+          .css("cursor", "default");
+        $(".wrap9")
+          .css("-webkit-animation", "forwards")
+          .css("-webkit-animation-play-state", "paused")
+          .css("cursor", "default");
+        $(".bg-blue").css("display", "none");
+        $(".bg-red").css("display", "none");
+        colScore++; //控制黑盒分數
+      });
+      $(".cardAce").click(function () {
+        console.log("click");
+      });
+
+      var reStart = 3;
+      $(".btn").click(function () {
+        var PW = pw.value;
+        if (PW == "123") {
+          // if (colScore3 > 0) {
+          localStorage.setItem("pass", "1");
+          $(".wrapper").css("opacity", "0");
+          $("body").css("overflow", "auto");
+          setTimeout(function () {
+            console.log("setTimeout");
+            $(".wrapper").css("display", "none");
+          }, 500);
+
+          // } else {
+          //     $('.showText').html('未點擊過色相按鈕!' + '<br>' + '請重新開始!').css('color', 'blue')
+          //     // alert('發現彩蛋 : 正確密碼\n彩蛋獎勵 : 得到 獲取分數分法"點擊右下角色相按鈕"')
+          //     $('#pw').css('display', 'none')
+          //     $('.btn').text('重新開始').css('background', 'lightcoral')
+          //     setInterval(function () {
+          //         $('.btn').text('重新開始' + reStart).css('background', 'lightcoral')
+          //         if (reStart > 0) {
+          //             reStart--
+          //         } else {
+          //             window.location.href = 'home.html'
+          //         }
+
+          //     }, 1000)
+          //     $('.btn').click(function () {
+          //         console.log('well')
+          //         window.location.href = 'home.html'
+          //     })
+
+          // }
+        } else {
+          missPW++;
+          if (missPW > 2) {
+            alert('密碼輸入超過"3"次\n請重新開始');
+            window.location.href = "home.html";
+          }
+          $(".showText").text("驗證碼不正確");
+          console.log("密碼錯誤次數:" + missPW);
+        }
+      });
+      //保護頁面結束
+
+      //Vegas
+      $(".vegas").vegas({
+        animation: "kenburnsDown",
+        overlay: "vegas/overlays/03.png",
+        slides: [
+          { src: "images/silver.jpg" },
+          { src: "images/letters.jpg" },
+          { src: "images/card.jpg" },
+        ],
+      });
+      //Vegas
+
+      //彩蛋-色相按鈕
+      $(".bg-blue").dblclick(function () {
+        if (
+          confirm(
+            '發現彩蛋 : "色相按鈕"\n彩蛋獎勵 : "綠色牌盒"\n取得方式 : 按下"確定"領取 按下"取消"離開\n\n Designed by David Huang'
+          )
+        ) {
+          // $('.imgCard').css('opacity', '.2').css('filter', 'brightness(200%)')
+          $(".imgCard").css("filter", "hue-rotate(120deg)");
+          $(".bg-blue").css("display", "none");
+        }
+      });
+      //彩蛋-色相按鈕
+
+      // 控制牌盒顏色開始
+      var colScore3 = 0;
+      $(".bg-blue").click(function () {
+        $(this).css("border", "3px solid #fff");
+        $(this).toggleClass("bg-red");
+        $(".imgCard").toggleClass("colorChange");
+        colScore3++;
+      });
+      // $('.bg-red').click(function () {
+      //     $(this).css('border', '3px solid #fff')
+      //     $('.bg-blue').css('border', '0px solid #fff')
+      //     $('.imgCard').toggleClass('colorChange')
+      // })
+      //控制牌盒顏色結束
+
+      //牌盒透明度控制開始
+      var colScore2 = 0;
+      window.addEventListener("keydown", function () {
+        var x = event.keyCode;
+
+        if (x == 79) {
+          $(".imgCard").toggleClass("opacity0");
+        }
+        if (x == 80) {
+          colScore2++;
+          console.log(colScore2);
+        }
+        if (x == 40) {
+          window.location.href = "landingBack.html";
+        }
+        if (x == 13) {
+          event.preventDefault();
+          var PW = pw.value;
+          if (PW == "123") {
+            // if (colScore3 > 0) {
+            $(".wrapper").css("opacity", "0");
+            $("body").css("overflow", "auto");
+            setTimeout(function () {
+              console.log("setTimeout");
+              $(".wrapper").css("display", "none");
+            }, 500);
+
+            // }
+            // else {
+            //     $('.showText').html('未點擊過色相按鈕!' + '<br>' + '請重新開始!').css('color', 'blue')
+            //     // alert('發現彩蛋 : 正確密碼\n彩蛋獎勵 : 得到 獲取分數分法"點擊右下角色相按鈕"')
+            //     $('#pw').css('display', 'none')
+            //     $('.btn').text('重新開始').css('background', 'lightcoral')
+            //     setInterval(function () {
+            //         $('.btn').text('重新開始' + reStart).css('background', 'lightcoral')
+            //         if (reStart > 0) {
+            //             reStart--
+            //         } else {
+            //             window.location.href = 'home.html'
+            //         }
+
+            //     }, 1000)
+            //     $('.btn').click(function () {
+            //         console.log('well')
+            //         window.location.href = 'home.html'
+            //     })
+
+            // }
+          } else {
+            missPW++;
+            if (missPW > 2) {
+              alert('密碼輸入超過"3"次\n請重新開始');
+              window.location.href = "home.html";
+            }
+            $(".showText").text("驗證碼不正確");
+            console.log("密碼錯誤次數:" + missPW);
+          }
+        }
+        if (colScore2 > 3) {
+          localStorage.setItem("pass", "1");
+          $(".wrapper").css("opacity", "0");
+          $("body").css("overflow", "auto");
+          setTimeout(function () {
+            console.log("setTimeout");
+            $(".wrapper").css("display", "none");
+          }, 500);
+        }
+      });
+      //牌盒透明度控制結束
+
+      //黑盒控制開始
+      $(".wrap9").mouseover(function () {
+        $(".box9").css("opacity", "0");
+        setTimeout(function () {
+          $(".box9").css("display", "none");
+        }, 300);
+      });
+      $(".wrap9").mouseout(function () {
+        if (colScore > 0) return false;
+        setTimeout(function () {
+          $(".box9").css("display", "block");
+        }, 300);
+        setTimeout(function () {
+          $(".box9").css("opacity", ".1");
+        }, 1500);
+      });
+
+      //黑盒控制結束
+    </script>
+    <!-- navHide -->
+    <script>
+      var scrollLast = 0;
+      $(window).scroll(function () {
+        let scrollNow = $(this).scrollTop();
+        console.log(scrollNow);
+        if (scrollNow > scrollLast) {
+          $(".navbar").addClass("hide_nav");
+          // $('.progress').addClass('hide_nav');
+        } else {
+          $(".navbar").removeClass("hide_nav");
+          // $('.progress').removeClass('hide_nav');
+        }
+        scrollLast = scrollNow;
+      });
+    </script>
+
+    <!-- navHide -->
+  </body>
+</html>

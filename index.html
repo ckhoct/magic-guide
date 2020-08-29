@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>魔術指南</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/png" href="images/icon.png" />
+
+    <link rel="stylesheet" href="vegas/vegas.min.css" />
+
+    <style>
+      body {
+        font-family: "微軟正黑體";
+        width: 500px;
+        height: 500px;
+      }
+
+      @keyframes rotateY {
+        0% {
+          transform: rotateY(0deg);
+        }
+
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+
+      .space0 {
+        perspective: 500px;
+        /* background: #aaaaaa url('images/wallpaper.png') fixed center no-repeat; */
+        background-size: contain;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        /* width: 100vw; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .space1 {
+        /* animation: 10s rotateY linear infinite; */
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+        transition: 0.5s;
+        transform: rotateY(0deg) translateZ(-4000px);
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .wall {
+        transition: 0.5s;
+        position: absolute;
+        background: url("images/window.jpg") center;
+        background-size: contain;
+      }
+
+      .ground {
+        position: absolute;
+        background: url("images/ground.jpg") center;
+        background-size: contain;
+        background-position: 200px 200px;
+        width: 100vw;
+        height: 10000px;
+        /* background: #000; */
+        transform: rotateX(-90deg) translateZ(50vh) translateX(0px);
+      }
+
+      .topGround {
+        position: absolute;
+        background: url("images/wooden.jpg") center;
+        opacity: 1;
+        background-size: contain;
+        width: 100vw;
+        height: 10000px;
+        /* background: #000; */
+        transform: rotateX(90deg) translateZ(50vh) translateX(0px);
+      }
+
+      .wallL {
+        width: 10000px;
+        height: 100vh;
+        transform: rotateY(90deg) translateZ(50vw);
+        /* background: #000; */
+        /* opacity: .5; */
+      }
+
+      .wallR {
+        width: 10000px;
+        height: 100vh;
+        transform: rotateY(-90deg) translateZ(50vw);
+        /* background: #000; */
+        /* opacity: .5; */
+      }
+
+      .wallB {
+        width: 100vw;
+        height: 100vh;
+        transform: rotateY(0deg) translateZ(5000px);
+        background: url("images/window.jpg") center;
+        background-size: contain;
+      }
+
+      .wallDoor {
+        width: 100vw;
+        height: 100vh;
+        transform: rotateY(0deg) translateZ(-5000px);
+        background: rgba(0, 0, 0, 0.5);
+        filter: brightness(200%);
+      }
+
+      .wallDoor h3 {
+        color: blue;
+        font-weight: 600;
+        font-size: 200px;
+        line-height: 100vh;
+        text-align: center;
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      .note {
+        width: 300px;
+        height: 150px;
+        border: 5px solid #000;
+        border-radius: 20px;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        text-align: center;
+      }
+
+      .x {
+        opacity: 0;
+      }
+
+      .cover {
+        background: #000;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: 2s;
+      }
+
+      .title {
+        color: #fff;
+        font-weight: 600;
+        transition: 1s;
+        opacity: 0;
+        transform: translateY(150px);
+      }
+
+      .later {
+        /* display: none; */
+        opacity: 0;
+        transition: 2s;
+      }
+
+      /* cube */
+      @keyframes ani9 {
+        from {
+          transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+        }
+
+        to {
+          transform: translateZ(-100px) rotateX(360deg) rotateY(360deg);
+        }
+      }
+
+      .wrap9 {
+        animation: ani9 3s infinite linear;
+        transform-style: preserve-3d;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        transform: translateZ(0px);
+        margin: 0 auto;
+      }
+
+      .box9 {
+        width: 150px;
+        height: 150px;
+        background: #aaa;
+        text-align: center;
+        line-height: 150px;
+        color: #fff;
+        opacity: 0.3;
+        position: absolute;
+        font-size: 3rem;
+        border: 3px solid #fff;
+      }
+
+      .front9 {
+        transform: rotateY(0deg) translateZ(75px);
+      }
+
+      .back9 {
+        transform: rotateY(180deg) translateZ(75px);
+      }
+
+      .left9 {
+        transform: rotateY(-90deg) translateZ(75px);
+      }
+
+      .right9 {
+        transform: rotateY(90deg) translateZ(75px);
+      }
+
+      .top9 {
+        transform: rotateX(90deg) translateZ(75px);
+      }
+
+      .bottom9 {
+        transform: rotateX(-90deg) translateZ(75px);
+      }
+
+      /* cube */
+      .btnW {
+        width: 150px;
+      }
+
+      .btnX {
+        display: none;
+        width: 150px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .btnX {
+          display: block;
+        }
+
+        .btnW {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="cover">
+      <h1 class="title">3</h1>
+      <br />
+      <div class="wrap9 later mb-5">
+        <div class="box9 front9"></div>
+        <div class="box9 back9"></div>
+        <div class="box9 left9"></div>
+        <div class="box9 right9"></div>
+        <div class="box9 top9"></div>
+        <div class="box9 bottom9"></div>
+      </div>
+      <button class="btn btn-danger later btnW mt-4">開始</button>
+      <button class="btn btn-danger later btnX mt-4">開始</button>
+      <p class="pt-2 text-center">&copy; Designed by David Huang</p>
+    </div>
+    <div class="space0">
+      <div class="space1">
+        <div class="y wallL wall"></div>
+        <div class="y wallR wall"></div>
+        <div class="y ground"></div>
+        <div class="y topGround"></div>
+        <div class="y wall wallB"></div>
+        <div class="y wall wallDoor">
+          <h3>準備進入</h3>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <h3 class="my-3 story">提示</h3>
+      <p>
+        <span class="text-danger">離開長廊進入網頁</span
+        ><br />"按方向鍵前進或左右旋轉"
+      </p>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+      integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // 清storage
+      localStorage.clear();
+      //
+      // 彩蛋
+      $(".story").click(function () {
+        if (
+          confirm(
+            '發現彩蛋 : "提示框"\n彩蛋獎勵 : "長廊操作說明書"\n領取方式 : 按下"確定"領取 按下"取消"離開\n\n Designed by David Huang'
+          )
+        ) {
+          alert(
+            '"長廊操作說明書"\n\n1.方向鍵移動與旋轉\n2.空白鍵:長廊透明化\n3.有另外兩個隱藏操作沒有寫在這裡'
+          );
+        }
+      });
+      // 彩蛋
+      var score = 0;
+      var step = -4000;
+      var r = 0;
+      var stop = 0;
+      window.addEventListener("keyup", function () {
+        var rDirection = Math.abs((r / 90) % 4);
+        var x = event.keyCode;
+        console.log(score);
+        if (score == 7) {
+          $(".wallDoor h3").css("opacity", "1");
+        } else {
+          $(".wallDoor h3").css("opacity", "0");
+        }
+
+        if (x == 38) {
+          if (stop == 1) return false;
+          if (rDirection == 2) {
+            if (step <= -4000) return false;
+            step -= 1000;
+            score -= 1;
+          } else if (rDirection == 0) {
+            step += 1000;
+            score += 1;
+          } else {
+            step = step;
+          }
+          $(".space1").css(
+            "transform",
+            `rotateY(${r}deg) translateZ(${step}px)`
+          );
+          if (score > 8) {
+            if (confirm('確認進入請按"確定"\n維持原狀請按"取消"')) {
+              $(".y").addClass("x");
+              setTimeout(function () {
+                window.location.href = "home.html";
+              }, 1000);
+            } else {
+              step -= 1000;
+              $(".space1").css(
+                "transform",
+                `rotateY(${r}deg) translateZ(${step}px)`
+              );
+              score -= 1;
+            }
+          }
+        }
+        if (x == 40) {
+          if (stop == 1) return false;
+
+          if (rDirection == 2) {
+            step += 1000;
+            score += 1;
+          } else if (rDirection == 0) {
+            if (step <= -4000) return false;
+            step -= 1000;
+            score -= 1;
+          } else {
+            step = step;
+          }
+          $(".space1").css(
+            "transform",
+            `rotateY(${r}deg) translateZ(${step}px)`
+          );
+          if (score > 8) {
+            if (confirm('確認進入請按"確定"\n維持原狀請按"取消"')) {
+              $(".y").addClass("x");
+              setTimeout(function () {
+                window.location.href = "home.html";
+              }, 1000);
+            } else {
+              step -= 1000;
+              $(".space1").css(
+                "transform",
+                `rotateY(${r}deg) translateZ(${step}px)`
+              );
+              score -= 1;
+            }
+          }
+        }
+        if (x == 37) {
+          if (stop == 1) return false;
+
+          r -= 90;
+          $(".space1").css(
+            "transform",
+            ` rotateY(${r}deg) translateZ(${step}px)`
+          );
+        }
+        if (x == 39) {
+          if (stop == 1) return false;
+
+          r += 90;
+          $(".space1").css(
+            "transform",
+            ` rotateY(${r}deg) translateZ(${step}px)`
+          );
+        }
+        if (x == 79) {
+          stop = 1;
+          $(".space1").css(
+            "transform",
+            ` rotateY(${r}deg) translateZ(${step}px)`
+          );
+          $(".space1").css("animation", `10s rotateY linear infinite`);
+        }
+        if (x == 80) {
+          stop = 0;
+          $(".space1").css("animation", `none`);
+        }
+        if (x == 73) {
+          stop = 0;
+          $(".space1").css("animation-play-state", `paused`);
+        }
+        if (x == 32) {
+          $(".y").toggleClass("x");
+        }
+        if (x == 13) {
+          $(".cover").css("opacity", "0");
+          setTimeout(function () {
+            $(".cover").css("display", "none");
+          }, 500);
+        }
+      });
+    </script>
+    <!-- Vegas -->
+    <script src="vegas/vegas.min.js"></script>
+
+    <script>
+      $("body").vegas({
+        overlay: "vegas/overlays/03.png",
+        delay: 5000,
+        slides: [
+          {
+            src: "images/3.jpg",
+            video: { src: ["videos/v3.MOV"], loop: true, mute: true },
+          },
+        ],
+      });
+    </script>
+
+    <!-- Vegas -->
+    <!-- cover -->
+    <script>
+      var progress = 0;
+
+      setTimeout(function () {
+        $(".title").text("歡迎來到..");
+        $(".title").css("opacity", "1");
+      }, 1000);
+      setTimeout(function () {
+        $(".title").css("opacity", "0");
+      }, 3000);
+      setTimeout(function () {
+        $(".title").text("魔術指南");
+        $(".title").css("opacity", "1");
+      }, 5000);
+      setTimeout(function () {
+        $(".later").css("opacity", "1");
+        $(".title").css("transform", "translateY(-20px)");
+      }, 7000);
+
+      $(".btnW").click(function () {
+        $(".wrap9").css("opacity", "0");
+        $(".btnW").css("opacity", "0");
+        $(".title").css("transform", "translateY(150px)");
+        setTimeout(function () {
+          $(".title").text("0%");
+          $(".title")
+            .css("border", "3px solid #fff")
+            .css("border-radius", "50%")
+            .css("width", "150px")
+            .css("height", "150px")
+            .css("line-height", "150px")
+            .css("text-align", "center");
+          $(".btnW").css("cursor", "default");
+        }, 1500);
+        setTimeout(function () {
+          var progressTimer = setInterval(function () {
+            if (progress == 100) {
+              clearInterval(progressTimer);
+              $(".cover").css("opacity", "0");
+              setTimeout(function () {
+                $(".cover").css("display", "none");
+              }, 2000);
+            }
+            $(".title").text(progress + "%");
+            progress++;
+          }, 10);
+        }, 3000);
+      });
+    </script>
+    <!-- cover -->
+    <!-- rwd -->
+    <script>
+      $(".btnX").click(function () {
+        window.location.href = "home.html";
+      });
+    </script>
+    <!-- rwd -->
+  </body>
+</html>
